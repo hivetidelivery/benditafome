@@ -9,6 +9,7 @@ use BenditaFome\Repositories\OrderRepository;
 use BenditaFome\Repositories\ProductRepository;
 use BenditaFome\Repositories\UserRepository;
 use BenditaFome\Services\OrderService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -84,14 +85,14 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @param CostumerCheckoutRequest $checkoutRequest
+     * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function store(CostumerCheckoutRequest $checkoutRequest)
+    public function store(Request $request)
     {
-        $data              = $checkoutRequest->all();
+        $data              = $request->all();
         $data['client_id'] = $this->userRepository
             ->find(Auth::user()->id)
             ->client
