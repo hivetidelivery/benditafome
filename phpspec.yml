@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: BenditaFome
+        psr4_prefix: BenditaFome
+        src_path: app
