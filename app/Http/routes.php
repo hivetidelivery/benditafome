@@ -98,3 +98,19 @@ Route::group(['namespace'  => 'Costumer',
     Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
     Route::post('order/store', ['as' => 'order.store', 'uses' => 'CheckoutController@store']);
 });
+
+/**
+ * OAuth2 Grant Access
+ */
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});
+
+/**
+ * API Routes for mobile dev consume
+ */
+Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api'], function(){
+
+    
+
+});

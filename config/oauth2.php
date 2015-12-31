@@ -27,7 +27,17 @@ return [
     |
     */
 
-    'grant_types' => [
+    'grant_types'             => [
+        'password'      => [
+            'class'            => '\League\OAuth2\Server\Grant\PasswordGrant',
+            'callback'         => '\BenditaFome\OAuth2\PasswordVerifier@verify',
+            'access_token_ttl' => 3600,
+        ],
+        'refresh_token' => [
+            'class'             => '\League\OAuth2\Server\Grant\RefreshTokenGrant',
+            'access_token_ttl'  => 3600,
+            'refresh_token_ttl' => 36000,
+        ],
 
     ],
 
@@ -43,7 +53,7 @@ return [
     |
     */
 
-    'token_type' => 'League\OAuth2\Server\TokenType\Bearer',
+    'token_type'              => 'League\OAuth2\Server\TokenType\Bearer',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +64,7 @@ return [
     |
     */
 
-    'state_param' => false,
+    'state_param'             => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +75,7 @@ return [
     |
     */
 
-    'scope_param' => false,
+    'scope_param'             => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +86,7 @@ return [
     |
     */
 
-    'scope_delimiter' => ',',
+    'scope_delimiter'         => ',',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +97,7 @@ return [
     |
     */
 
-    'default_scope' => null,
+    'default_scope'           => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +109,7 @@ return [
     |
     */
 
-    'access_token_ttl' => 3600,
+    'access_token_ttl'        => 3600,
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +145,7 @@ return [
     |
     */
 
-    'limit_scopes_to_grants' => false,
+    'limit_scopes_to_grants'  => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -147,6 +157,6 @@ return [
     |
     */
 
-    'http_headers_only' => false,
+    'http_headers_only'       => false,
 
 ];
