@@ -102,15 +102,33 @@ Route::group(['namespace'  => 'Costumer',
 /**
  * OAuth2 Grant Access
  */
-Route::post('oauth/access_token', function() {
+Route::post('oauth/access_token', function () {
     return Response::json(Authorizer::issueAccessToken());
 });
 
 /**
  * API Routes for mobile dev consume
  */
-Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api'], function(){
+Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api'], function () {
+    /**
+     * Client routes
+     */
+    Route::group(['prefix' => 'client', 'middleware' => 'oauth-role:client', 'as' => 'client.'], function () {
 
-    
+        Route::resource('orders', 'API\Client\ClientCheckoutController', ['only' => [
+            'index', 'store', 'show', 'update'
+        ]]);
 
+    });
+
+    /**
+     * Deliveryman routes
+     */
+    Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth-role:deliveryman', 'as' => 'deliveryman.'], function () {
+
+        Route::resource('orders', 'API\Client\ClientCheckoutController', ['only' => [
+            'index', 'store', 'show', 'update'
+        ]]);
+
+    });
 });

@@ -45,4 +45,12 @@ class Order extends Model implements Transformable
         return $this->belongsTo(User::class, 'user_deliveryman_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
 }

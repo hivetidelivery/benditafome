@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
         'auth.basic'                 => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest'                      => \BenditaFome\Http\Middleware\RedirectIfAuthenticated::class,
         'authRole'                   => \BenditaFome\Http\Middleware\AuthRole::class,
+        'oauth-role'                  => \BenditaFome\Http\Middleware\OAuthRole::class,
 
         'oauth'                      => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
         'oauth-user'                 => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,

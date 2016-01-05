@@ -19,4 +19,9 @@ class Coupon extends Model implements Transformable
         'value',
     ];
 
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
+
 }
