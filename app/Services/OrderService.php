@@ -2,9 +2,12 @@
 
 namespace BenditaFome\Services;
 
+use BenditaFome\Models\Order;
 use BenditaFome\Repositories\CouponRepository;
 use BenditaFome\Repositories\OrderRepository;
 use BenditaFome\Repositories\ProductRepository;
+use Illuminate\Http\Request;
+use Mockery\Exception;
 
 /**
  * Class OrderService
@@ -88,6 +91,30 @@ class OrderService
             \DB::rollback();
             throw $e;
         }
+    }
+
+    /**
+     * @param array   $where
+     * @param Request $request
+     *
+     * @return bool|string
+     */
+    public function update(array $where, Request $request)
+    {
+        try {
+            if ($request->method() === 'PATCH') {
+                $dataRequest = $request->all();
+                $key         = array_keys($dataRequest)[0];
+                $value       = $dataRequest[ $key ];
+                $order       = $this->orderRepository->findWhere($where)->first();
+
+                return $order ? $order->update([$key => $value]) : false;
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+        return false;
     }
 
 }

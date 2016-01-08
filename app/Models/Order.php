@@ -5,6 +5,7 @@ namespace BenditaFome\Models;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use BenditaFome\Models\Observers\OrderObserver;
 
 class Order extends Model implements Transformable
 {
@@ -51,6 +52,13 @@ class Order extends Model implements Transformable
     public function coupon()
     {
         return $this->belongsTo(Coupon::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        Order::observe(new OrderObserver());
     }
 
 }

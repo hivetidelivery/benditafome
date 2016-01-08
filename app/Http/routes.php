@@ -116,7 +116,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api'], functi
     Route::group(['prefix' => 'client', 'middleware' => 'oauth-role:client', 'as' => 'client.'], function () {
 
         Route::resource('orders', 'API\Client\ClientCheckoutController', ['only' => [
-            'index', 'store', 'show', 'update'
+            'index', 'store', 'show', 'update',
         ]]);
 
     });
@@ -126,8 +126,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api'], functi
      */
     Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth-role:deliveryman', 'as' => 'deliveryman.'], function () {
 
-        Route::resource('orders', 'API\Client\ClientCheckoutController', ['only' => [
-            'index', 'store', 'show', 'update'
+        Route::resource('orders', 'API\Deliveryman\DeliverymanCheckoutController', ['only' => [
+            'index', 'store', 'show', 'update',
         ]]);
 
     });
